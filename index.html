@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>York Realty | Home</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css">
+    <link rel="stylesheet" href="style.css">
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        includedLanguages: 'en,fr',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+      }, 'google_translate_element');
+    }
+  </script>
+  <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</head>
+<body>
+  <div id="google_translate_element" class="mb-2"></div>
+    <div class="page-transition-overlay" id="page-transition-overlay"></div>
+    <div id="alert-container" class="container mt-3" style="position: fixed; top: 70px; left: 50%; transform: translateX(-50%); z-index: 1050; max-width: 500px;"></div>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-danger px-4">
+        <div class="container-fluid">
+            <a class="navbar-brand text-white fw-bold" href="index.html">York Realty</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <div class="ms-auto d-flex gap-2" id="nav-buttons-container">
+                    <a href="index.html" class="btn btn-dark">Home</a>
+                    <a href="listings.html" class="btn btn-dark">Listings</a>
+                    <a href="create-listing.html" class="btn btn-dark">Create Listing</a>
+                    <a href="faq.html" class="btn btn-dark">FAQ</a>
+                    <a href="login.html" class="btn btn-dark" id="login-btn">Login</a>
+                    <a href="register.html" class="btn btn-dark" id="register-btn">Register</a>
+                    <button class="btn btn-dark d-none" id="logout-btn">Logout</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero text-center text-white py-5 mb-4">
+        <div class="container">
+            <h1 class="display-4 fw-bold mb-3">Find the Perfect Off-Campus Home</h1>
+            <p class="lead mb-4">Helping York University students secure safe, affordable housing</p>
+            <a href="listings.html" class="btn btn-danger btn-lg px-4">Browse Listings</a>
+        </div>
+    </header>
+
+    <section class="container my-5">
+        <h2 class="text-center mb-4">Featured Listings</h2>
+        <div class="row g-4" id="featured-listings-container">
+            <div class="col-12 text-center">
+                <p>Loading featured listings...</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="benefits-section py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">Why Use York Realty?</h2>
+            
+            <div class="swiper benefits-swiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="card border-0 bg-transparent text-center">
+                            <div class="card-body">
+                                <h3>Built for Students, by Students</h3>
+                                <p class="lead">We understand what students need — budget-friendly rent, short commutes, and trusted spaces. That's why York Realty lets you post or search for listings easily, all in one place. You're in control, whether you're moving in or moving out.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="card border-0 bg-transparent text-center">
+                            <div class="card-body">
+                                <h3>Verified Listings</h3>
+                                <p class="lead">Every property on our platform is personally verified by our team to ensure quality and accuracy. No scams, no surprises - just real homes for real students.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="card border-0 bg-transparent text-center">
+                            <div class="card-body">
+                                <h3>24/7 Support</h3>
+                                <p class="lead">Our student support team is available around the clock to help with any questions or issues. We're students too, so we know what matters most.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-pagination"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+            </div>
+        </div>
+        
+        <div class="faq-strip">
+            <div class="container">
+                <p class="h5 mb-0">Got questions? We've got answers – <a href="faq.html" class="faq-link">FAQ</a></p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-danger text-white py-4">
+        <div class="container text-center">
+            <p class="mb-1">&copy; 2025 YorkRealty. All rights reserved.</p>
+            <p class="mb-0">Built for York University students to find and post off-campus housing with ease.</p>
+            <p class="mt-2">Contact us at <a href="mailto:info@yorkrealty.ca" class="text-white fw-bold">info@yorkrealty.ca</a> | North York, Toronto</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+    <script src="script.js"></script>
+    <script>
+        // Initialize Swiper
+        const swiper = new Swiper('.benefits-swiper', {
+            loop: true,
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+        });
+    </script>
+</body>
+</html>

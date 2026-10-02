@@ -1,0 +1,1323 @@
+/* General Styles */
+:root {
+    --york-red: #E31837; /* Primary red */
+    --york-white: #FFFFFF; /* Primary white */
+    --york-dark: #212529; /* Dark text/background, slightly softer than pure black */
+    --york-light: #F8F9FA; /* Light background for sections */
+    --york-gold: #FFD700; /* Accent gold/yellow */
+    --york-grey: #6c757d; /* Muted grey for secondary text */
+    --york-light-grey: #e9ecef; /* Lighter grey for subtle backgrounds/borders */
+    --york-blue: #007bff; /* A nice blue for some accents if needed, or specific buttons */
+    --york-green: #28a745; /* Green for success or positive actions */
+
+    /* Utility for Bootstrap RGBA colors */
+    --york-red-rgb: 227, 24, 55;
+    --york-white-rgb: 255, 255, 255;
+    --york-dark-rgb: 33, 37, 41;
+}
+
+body {
+    font-family: 'Inter', sans-serif; /* Using Inter font from Google Fonts */
+    color: var(--york-dark);
+    background-color: var(--york-light);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    line-height: 1.6;
+    scroll-behavior: smooth; /* Smooth scrolling for anchor links */
+    overflow-x: hidden; /* Prevent horizontal scroll caused by animations */
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700; /* Make headings bold */
+    color: var(--york-dark);
+    line-height: 1.3; /* Improved line height for headings */
+}
+
+p {
+    margin-bottom: 1rem;
+}
+
+a {
+    color: var(--york-red);
+    text-decoration: none;
+    transition: color 0.3s ease-in-out, transform 0.2s ease;
+}
+
+a:hover {
+    color: var(--york-dark);
+    text-decoration: underline;
+    transform: translateY(-2px);
+}
+
+/* --- Utility Classes for Animations --- */
+.fade-in {
+    opacity: 0;
+    animation: fadeIn 0.8s forwards ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in-up {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 0.8s forwards ease-out;
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Add a class for staggered animation if needed in JS */
+.stagger-1 { animation-delay: 0.1s; }
+.stagger-2 { animation-delay: 0.2s; }
+.stagger-3 { animation-delay: 0.3s; }
+/* ... and so on for more elements */
+
+
+/* --- Navbar --- */
+.navbar {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Slightly stronger shadow */
+    padding: 1rem 2.5rem; /* Increased padding */
+    background-color: var(--york-red) !important; /* Ensure red background */
+    transition: background-color 0.3s ease, padding 0.3s ease;
+    z-index: 1030; /* Ensure navbar is on top */
+}
+
+/* Sticky Navbar on scroll */
+body.scrolled .navbar {
+    background-color: rgba(var(--york-red-rgb), 0.95) !important; /* Slightly transparent on scroll */
+    padding: 0.8rem 2.5rem;
+}
+
+.navbar-brand {
+    font-weight: 900; /* Even bolder */
+    letter-spacing: 1px; /* More spacing */
+    font-size: 2rem; /* Larger brand text */
+    color: var(--york-white) !important; /* Ensure white text */
+    transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55), color 0.3s ease; /* Bouncier transform */
+}
+
+.navbar-brand:hover {
+    transform: scale(1.05) rotate(-2deg); /* Gold on hover for brand with slight rotation */
+    color: var(--york-gold) !important;
+}
+
+.navbar-nav .nav-link {
+    color: var(--york-white) !important;
+    font-weight: 600;
+    font-size: 1.05rem;
+    margin: 0 0.75rem;
+    position: relative;
+    transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.navbar-nav .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background-color: var(--york-gold); /* Underline effect */
+    transition: width 0.3s ease-in-out;
+}
+
+.navbar-nav .nav-link:hover::after {
+    width: 100%;
+}
+
+.navbar-nav .nav-link:hover {
+    color: var(--york-gold) !important;
+    transform: translateY(-2px);
+}
+
+
+/* Navbar Buttons - Login/Register/Logout */
+.navbar .btn-login {
+    background-color: var(--york-dark);
+    border-color: var(--york-dark);
+    color: var(--york-white);
+    transition: all 0.3s ease-in-out;
+}
+
+.navbar .btn-login:hover {
+    background-color: var(--york-gold);
+    border-color: var(--york-gold);
+    color: var(--york-dark);
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+}
+
+.navbar .btn-register {
+    background-color: var(--york-gold);
+    border-color: var(--york-gold);
+    color: var(--york-dark);
+    font-weight: 700;
+    margin-left: 10px;
+    transition: all 0.3s ease-in-out;
+}
+
+.navbar .btn-register:hover {
+    background-color: #e6b800; /* Slightly darker gold */
+    border-color: #e6b800;
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+}
+
+.navbar .btn-logout {
+    background-color: var(--york-white); /* White for logout */
+    border-color: var(--york-white);
+    color: var(--york-red);
+    font-weight: 700;
+    transition: all 0.3s ease-in-out;
+}
+
+.navbar .btn-logout:hover {
+    background-color: var(--york-light-grey);
+    border-color: var(--york-light-grey);
+    color: var(--york-red);
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+}
+
+/* Responsive Navbar Toggle */
+.navbar-toggler {
+    border-color: rgba(var(--york-white-rgb), 0.5);
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.8%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+
+/* --- Hero Section (Homepage) --- */
+.hero {
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), /* Darker overlay */
+                url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2073&q=80') center/cover no-repeat;
+    color: var(--york-white);
+    padding: 9rem 0; /* Increased padding for more space */
+    text-align: center;
+    position: relative;
+    overflow: hidden; /* Ensure content stays within */
+    min-height: 600px; /* Minimum height for hero */
+    display: flex;
+    align-items: center; /* Center content vertically */
+    justify-content: center; /* Center content horizontally */
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at center, rgba(var(--york-red-rgb), 0.2) 0%, transparent 70%); /* More prominent red overlay */
+    z-index: 1;
+    animation: heroOverlayPulse 5s infinite alternate ease-in-out;
+}
+
+@keyframes heroOverlayPulse {
+    0% { transform: scale(1); opacity: 0.8; }
+    100% { transform: scale(1.05); opacity: 1; }
+}
+
+
+.hero .container {
+    position: relative;
+    z-index: 2; /* Ensure content is above overlay */
+}
+
+.hero h1 {
+    font-size: 4rem; /* Even larger hero heading */
+    font-weight: 900;
+    margin-bottom: 1.5rem;
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.6); /* Stronger text shadow */
+    color: var(--york-white);
+    animation: textSlideIn 1s forwards ease-out;
+}
+
+.hero p.lead {
+    font-size: 1.6rem;
+    max-width: 850px;
+    margin: 0 auto 3rem auto;
+    text-shadow: 0 3px 6px rgba(0, 0, 0, 0.5);
+    color: rgba(var(--york-white-rgb), 0.95);
+    animation: textSlideIn 1s forwards ease-out 0.2s;
+}
+
+.hero .btn-primary {
+    background-color: var(--york-gold); /* Gold call to action */
+    border-color: var(--york-gold);
+    color: var(--york-dark);
+    font-weight: 800;
+    padding: 1rem 3rem; /* Larger button */
+    font-size: 1.3rem;
+    border-radius: 0.75rem; /* More rounded */
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Bouncier transition */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    animation: buttonScaleIn 1s forwards ease-out 0.4s;
+}
+
+.hero .btn-primary:hover {
+    background-color: #e6b800; /* Slightly darker gold on hover */
+    border-color: #e6b800;
+    transform: translateY(-5px) scale(1.08); /* More pronounced lift and scale */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+}
+
+@keyframes textSlideIn {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes buttonScaleIn {
+    from { opacity: 0; transform: scale(0.8); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+/* --- Main Content Sections --- */
+main.container {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 3.5rem;
+    position: relative;
+    padding-bottom: 18px;
+    font-size: 2.8rem;
+    font-weight: 900;
+    color: var(--york-dark);
+    opacity: 0; /* For fade-in animation */
+    transform: translateY(20px);
+    animation: fadeIn 0.8s forwards ease-out;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px; /* Wider underline */
+    height: 5px; /* Thicker underline */
+    background-color: var(--york-red);
+    border-radius: 3px;
+    animation: underlineGrow 1s forwards ease-out 0.3s;
+}
+
+@keyframes underlineGrow {
+    from { width: 0; }
+    to { width: 100px; }
+}
+
+
+/* --- Cards (Listings, Featured) --- */
+.card {
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Smooth ease-out-quad */
+    border: 1px solid var(--york-light-grey); /* Subtle border */
+    border-radius: 1rem; /* More rounded corners */
+    overflow: hidden; /* Ensures image corners match card */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); /* Softer shadow */
+    opacity: 0; /* For fade-in animation */
+    transform: translateY(20px);
+    animation: fadeInUp 0.8s forwards ease-out;
+}
+
+.card:hover {
+    transform: translateY(-12px) scale(1.02); /* Enhanced lift and slight scale */
+    box-shadow: 0 16px 35px rgba(0, 0, 0, 0.2); /* More prominent shadow on hover */
+}
+
+.card-img-top {
+    height: 250px; /* Fixed height for consistent image size */
+    object-fit: cover; /* Ensures images cover the area without distortion */
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+    transition: transform 0.5s ease; /* Slower transition for image */
+}
+
+.card:hover .card-img-top {
+    transform: scale(1.1); /* More noticeable zoom on image */
+}
+
+.card-body {
+    padding: 1.75rem; /* Increased padding inside card body */
+}
+
+.card-title {
+    font-size: 1.6rem;
+    color: var(--york-red); /* Price in red */
+    font-weight: 800;
+    margin-bottom: 0.6rem;
+}
+
+.card-subtitle {
+    font-size: 1.15rem;
+    color: var(--york-dark);
+    font-weight: 600;
+    margin-bottom: 0.85rem;
+}
+
+.card-text {
+    font-size: 1rem;
+    color: var(--york-dark);
+    line-height: 1.6;
+}
+
+.card-text strong {
+    color: var(--york-dark);
+}
+
+.card .badge {
+    font-size: 0.9rem;
+    padding: 0.6em 1em;
+    border-radius: 0.4rem;
+    background-color: var(--york-gold) !important;
+    color: var(--york-dark) !important;
+    font-weight: 700;
+    animation: pulseBadge 1.5s infinite alternate;
+}
+
+@keyframes pulseBadge {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.05); }
+}
+
+.card .view-details-btn {
+    background-color: var(--york-red);
+    border-color: var(--york-red);
+    font-weight: 600;
+    margin-top: 1.25rem;
+    transition: all 0.3s ease;
+    border-radius: 0.6rem;
+    padding: 0.75rem 1.5rem;
+    text-transform: uppercase; /* Uppercase for buttons */
+    letter-spacing: 0.5px;
+}
+
+.card .view-details-btn:hover {
+    background-color: var(--york-dark);
+    border-color: var(--york-dark);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* --- Listing Filter Section Styling --- */
+.filter-section {
+    background-color: var(--york-white);
+    padding: 2.5rem;
+    border-radius: 1rem;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    margin-bottom: 3rem;
+    animation: fadeIn 0.8s forwards ease-out;
+}
+
+.filter-section .form-control,
+.filter-section .form-select {
+    border-radius: 0.5rem;
+    border: 1px solid var(--york-light-grey);
+    padding: 0.7rem 1rem;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.filter-section .form-control:focus,
+.filter-section .form-select:focus {
+    border-color: var(--york-red);
+    box-shadow: 0 0 0 0.25rem rgba(var(--york-red-rgb), 0.2);
+}
+
+.filter-section .btn-search {
+    background-color: var(--york-red);
+    border-color: var(--york-red);
+    color: var(--york-white);
+    font-weight: 700;
+    padding: 0.7rem 2rem;
+    border-radius: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.filter-section .btn-search:hover {
+    background-color: var(--york-dark);
+    border-color: var(--york-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* --- Property Detail Page Specifics --- */
+#propertyDetailsContent {
+    background-color: var(--york-white);
+    padding: 3rem;
+    border-radius: 1.25rem;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+    animation: fadeIn 1s forwards ease-out;
+}
+
+#propertyImage {
+    max-height: 550px; /* Slightly taller image */
+    width: 100%;
+    object-fit: cover;
+    border-radius: 1rem;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+    transition: transform 0.5s ease;
+}
+
+#propertyImage:hover {
+    transform: scale(1.01); /* Subtle zoom on detail image */
+}
+
+#propertyTitle {
+    font-size: 2.8rem;
+    font-weight: 900;
+    color: var(--york-red);
+    margin-bottom: 0.75rem;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+#propertyPrice {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--york-dark); /* Price in dark color for detail page */
+    margin-bottom: 2rem;
+}
+
+#propertyDetailsContent p {
+    font-size: 1.15rem;
+    margin-bottom: 1rem;
+    color: var(--york-dark);
+}
+
+#propertyDetailsContent p strong {
+    color: var(--york-dark);
+}
+
+#propertyDetailsContent h4 {
+    color: var(--york-red);
+    font-weight: 700;
+    margin-top: 3rem;
+    margin-bottom: 1.25rem;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--york-light-grey);
+    font-size: 1.8rem;
+}
+
+/* Agent Contact Section */
+.agent-contact-box {
+    background-color: var(--york-light);
+    border: 1px solid var(--york-light-grey);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    margin-top: 2rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+.agent-contact-box h5 {
+    color: var(--york-red);
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+.agent-contact-box p {
+    margin-bottom: 0.5rem;
+}
+
+/* --- Form Styles (Login, Register, Create Listing) --- */
+form {
+    background-color: var(--york-white);
+    padding: 3rem;
+    border-radius: 1.25rem;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+    animation: fadeIn 1s forwards ease-out;
+}
+
+form .form-control,
+form .form-select,
+form .form-label { /* Styling for labels as well */
+    font-size: 1.05rem;
+    color: var(--york-dark);
+}
+
+form .form-label {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+form .form-control {
+    border-radius: 0.6rem;
+    border: 1px solid var(--york-light-grey);
+    padding: 0.85rem 1.1rem;
+    transition: all 0.3s ease;
+}
+
+form .form-control:focus {
+    border-color: var(--york-red);
+    box-shadow: 0 0 0 0.25rem rgba(var(--york-red-rgb), 0.3);
+    outline: none;
+}
+
+form .form-control.is-invalid {
+    border-color: #dc3545;
+    box-shadow: 0 0 0 0.25rem rgba(220, 53, 69, 0.25);
+}
+
+form .invalid-feedback {
+    font-size: 0.9rem;
+    color: #dc3545;
+    margin-top: 0.25rem;
+}
+
+form .btn-danger {
+    background-color: var(--york-red);
+    border-color: var(--york-red);
+    font-weight: 700;
+    padding: 0.85rem 1.8rem;
+    font-size: 1.15rem;
+    border-radius: 0.6rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(var(--york-red-rgb), 0.2);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+form .btn-danger:hover {
+    background-color: var(--york-dark);
+    border-color: var(--york-dark);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+/* Loading spinner for buttons */
+form .btn-danger .spinner-border {
+    margin-right: 0.5rem;
+}
+
+
+/* Success/Error Messages */
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+    border-color: #c3e6cb;
+    font-weight: 600;
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    opacity: 0;
+    animation: fadeIn 0.6s forwards ease-out;
+}
+
+.alert-danger {
+    background-color: #f8d7da;
+    color: #721c24;
+    border-color: #f5c6cb;
+    font-weight: 600;
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    opacity: 0;
+    animation: fadeIn 0.6s forwards ease-out;
+}
+
+/* --- Why Choose York Realty Section --- */
+.benefits-section {
+    background-color: var(--york-red);
+    color: var(--york-white);
+    padding: 5rem 0 2rem 0; /* Adjusted padding */
+    position: relative;
+    overflow: hidden;
+    margin-top: 4rem; /* Add margin to separate from content above */
+}
+
+.benefits-section::before,
+.benefits-section::after {
+    content: '';
+    position: absolute;
+    background: radial-gradient(circle at center, rgba(255, 255, 255, 0.2) 0%, transparent 70%); /* Stronger radial gradient */
+    border-radius: 50%;
+    animation: bubblePulse 6s infinite alternate ease-in-out;
+    z-index: 0;
+}
+
+.benefits-section::before {
+    top: -80px;
+    left: -80px;
+    width: 250px;
+    height: 250px;
+    animation-delay: 0s;
+}
+
+.benefits-section::after {
+    bottom: -100px;
+    right: -100px;
+    width: 300px;
+    height: 300px;
+    animation-delay: 2s; /* Staggered animation */
+}
+
+@keyframes bubblePulse {
+    0% { transform: scale(0.9); opacity: 0.8; }
+    50% { transform: scale(1.1); opacity: 1; }
+    100% { transform: scale(0.9); opacity: 0.8; }
+}
+
+.benefits-section h2 {
+    color: var(--york-white);
+    margin-bottom: 3.5rem;
+    position: relative;
+    display: inline-block;
+    font-size: 3rem; /* Larger heading */
+    font-weight: 900;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    animation: textSlideIn 1s forwards ease-out;
+}
+
+.benefits-section h2::after {
+    content: '';
+    position: absolute;
+    bottom: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px; /* Wider underline */
+    height: 5px; /* Thicker underline */
+    background-color: var(--york-gold); /* Gold underline */
+    border-radius: 3px;
+    animation: underlineGrow 1s forwards ease-out 0.3s;
+}
+
+/* --- White FAQ Strip --- */
+.faq-strip {
+    background-color: var(--york-white);
+    padding: 2.5rem 0; /* Increased padding */
+    margin-top: 4rem;
+    text-align: center;
+    box-shadow: 0 -6px 15px rgba(0, 0, 0, 0.08); /* Stronger shadow for separation */
+    position: relative;
+    z-index: 10;
+    border-top: 1px solid var(--york-light-grey); /* Subtle top border */
+    animation: fadeIn 0.8s forwards ease-out;
+}
+
+.faq-strip::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 12px; /* Slightly thicker shadow effect */
+    background: linear-gradient(0deg, rgba(0,0,0,0.1), transparent);
+}
+
+.faq-strip p.h5 {
+    color: var(--york-dark);
+    margin-bottom: 0;
+    font-size: 1.35rem; /* Larger text */
+    font-weight: 700;
+}
+
+.faq-link {
+    color: var(--york-red) !important;
+    font-weight: 800;
+    text-decoration: none;
+    border-bottom: 4px solid var(--york-red); /* Thicker underline */
+    padding-bottom: 5px; /* More padding */
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55); /* Bouncier transition */
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+}
+
+.faq-link:hover {
+    color: var(--york-dark) !important;
+    border-bottom-color: var(--york-gold); /* Gold underline on hover */
+    letter-spacing: 1px; /* More noticeable letter spacing on hover */
+    transform: translateY(-3px); /* Slight lift on hover */
+}
+
+/* --- Swiper Customization --- */
+.benefits-swiper {
+    max-width: 950px; /* Wider carousel */
+    margin: 0 auto;
+    padding: 3rem 0; /* Increased padding */
+    position: relative; /* For navigation buttons positioning */
+    z-index: 1; /* Ensure swiper is above section background effects */
+}
+
+.benefits-swiper .swiper-slide {
+    background-color: rgba(255, 255, 255, 0.2); /* Slightly less transparent white */
+    backdrop-filter: blur(10px); /* More blur effect */
+    border-radius: 1.5rem; /* More rounded corners */
+    padding: 3rem; /* Increased padding */
+    border: 1px solid rgba(255, 255, 255, 0.3); /* More visible border */
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 280px; /* Ensure a minimum height for slides */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15); /* Stronger shadow */
+    transition: all 0.3s ease;
+}
+
+.benefits-swiper .swiper-slide:hover {
+    transform: translateY(-5px) scale(1.01);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+}
+
+.benefits-swiper h3 {
+    color: var(--york-gold); /* Gold heading */
+    margin-bottom: 1.8rem;
+    font-size: 2rem; /* Larger heading */
+    font-weight: 900;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.benefits-swiper .lead {
+    color: rgba(255, 255, 255, 0.98); /* Brighter white text */
+    font-size: 1.25rem; /* Slightly larger text */
+    line-height: 1.8;
+}
+
+/* Swiper Navigation */
+.swiper-button-prev,
+.swiper-button-next {
+    color: var(--york-gold) !important; /* Gold arrows */
+    background-color: rgba(var(--york-dark-rgb), 0.5); /* Darker background with transparency */
+    width: 50px; /* Larger buttons */
+    height: 50px;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.4);
+    opacity: 0.8;
+}
+
+.swiper-button-prev:hover,
+.swiper-button-next:hover {
+    background-color: rgba(var(--york-dark-rgb), 0.7); /* Even darker on hover */
+    transform: scale(1.1);
+    opacity: 1;
+}
+
+.swiper-button-prev::after,
+.swiper-button-next::after {
+    font-size: 1.6rem !important; /* Larger arrow icon */
+    font-weight: 900;
+}
+
+.swiper-pagination-bullet {
+    background: rgba(255, 255, 255, 0.7); /* Slightly more opaque bullets */
+    width: 10px; /* Larger bullets */
+    height: 10px;
+    transition: all 0.3s ease;
+}
+
+.swiper-pagination-bullet-active {
+    background: var(--york-gold); /* Gold active bullet */
+    transform: scale(1.3); /* Active bullet stands out more */
+    box-shadow: 0 0 0 3px rgba(var(--york-gold-rgb), 0.5); /* Ring effect */
+}
+
+/* --- Footer --- */
+/* Ensure all footers have a consistent red background */
+footer {
+    background-color: #dc3545 !important; /* A strong red */
+    color: white !important; /* Make text white for contrast */
+}
+
+/* If you have specific footer classes, make sure they inherit or are set as well */
+.site-footer { /* Example if you have a class like .site-footer */
+    background-color: #dc3545 !important;
+    color: white !important;
+}
+
+/* Ensure links in the footer are also visible and styled appropriately */
+footer a {
+    color: white !important;
+    text-decoration: none;
+}
+
+footer a:hover {
+    color: #f8f9fa !important; /* Lighter white on hover */
+    text-decoration: underline;
+}
+
+/* Social Media Icons (if any) */
+.social-icons a {
+    color: var(--york-white);
+    font-size: 1.5rem;
+    margin: 0 10px;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+.social-icons a:hover {
+    color: var(--york-gold);
+    transform: translateY(-3px) scale(1.1);
+}
+
+
+/* --- Back To Top Button --- */
+.back-to-top {
+    background-color: var(--york-red) !important;
+    border-color: var(--york-red) !important;
+    color: var(--york-white) !important;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55); /* Bouncier transition */
+    position: fixed; /* Already defined in JS, but good to ensure here */
+    bottom: 25px; /* Slightly higher */
+    right: 25px; /* Slightly more to the right */
+    width: 55px; /* Slightly larger */
+    height: 55px;
+    font-size: 1.8rem; /* Larger arrow */
+    line-height: 1;
+    display: none; /* Controlled by JS */
+    z-index: 1000;
+    border-radius: 50%;
+    border: 3px solid var(--york-white) !important; /* White border */
+}
+
+.back-to-top:hover {
+    background-color: var(--york-dark) !important;
+    border-color: var(--york-dark) !important;
+    transform: translateY(-8px) scale(1.1); /* More pronounced lift and scale */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+}
+
+
+/* --- Custom Modal Styling (for customAlertModal) --- */
+.modal-content {
+    border-radius: 1.25rem; /* Sharper corners for the entire modal */
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.35); /* More pronounced shadow */
+    border: none;
+    overflow: hidden;
+    animation: scaleIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Scale in animation */
+}
+
+@keyframes scaleIn {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+.modal-header {
+    background-color: var(--york-red); /* York Red header */
+    color: var(--york-white);
+    border-bottom: none;
+    padding: 1.8rem 2.5rem; /* Increased padding */
+    position: relative;
+    font-weight: 700;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top-left-radius: 1.25rem; /* Match content radius */
+    border-top-right-radius: 1.25rem;
+}
+
+.modal-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: repeating-linear-gradient(
+        45deg,
+        rgba(255, 255, 255, 0.1), /* Slightly more visible pattern */
+        rgba(255, 255, 255, 0.1) 15px, /* Increased pattern size */
+        transparent 15px,
+        transparent 30px
+    );
+    opacity: 0.4;
+    z-index: 0;
+}
+
+.modal-title {
+    font-size: 2rem; /* Larger title */
+    font-weight: 900;
+    color: var(--york-white);
+    z-index: 1;
+    flex-grow: 1;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.modal-header .btn-close {
+    filter: invert(1) brightness(2); /* Make close button pure white and brighter */
+    opacity: 1;
+    transition: opacity 0.3s ease, transform 0.2s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    z-index: 1;
+    margin-left: auto;
+    position: absolute;
+    right: 1.8rem;
+    top: 1.8rem;
+    font-size: 1.2rem; /* Larger close icon */
+}
+
+.modal-header .btn-close:hover {
+    opacity: 1;
+    transform: scale(1.2) rotate(90deg); /* More pronounced enlarge and rotate on hover */
+}
+
+.modal-body {
+    padding: 3rem; /* Increased padding */
+    font-size: 1.2rem; /* Slightly larger body text */
+    color: var(--york-dark);
+    text-align: center;
+    line-height: 1.8; /* Better readability */
+}
+
+.modal-body p {
+    margin-bottom: 0;
+    font-weight: 500;
+}
+
+.modal-body strong {
+    font-weight: 700;
+    color: var(--york-red);
+}
+
+
+.modal-footer {
+    padding: 1.8rem 2.5rem;
+    border-top: 1px solid var(--york-light-grey);
+    background-color: var(--york-light);
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem; /* More space between buttons */
+    border-bottom-left-radius: 1.25rem; /* Match content radius */
+    border-bottom-right-radius: 1.25rem;
+}
+
+.modal-footer .btn {
+    font-weight: 700;
+    border-radius: 0.75rem; /* Slightly more rounded */
+    padding: 0.8rem 2.2rem; /* Comfortable padding */
+    font-size: 1.1rem;
+    min-width: 140px; /* Ensure consistent button width */
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    letter-spacing: 0.7px; /* Slightly more letter spacing */
+    text-transform: uppercase;
+}
+
+.modal-footer .btn-danger {
+    background-color: var(--york-red);
+    border-color: var(--york-red);
+    color: var(--york-white);
+    box-shadow: 0 5px 15px rgba(var(--york-red-rgb), 0.3);
+}
+
+.modal-footer .btn-danger:hover {
+    background-color: var(--york-dark);
+    border-color: var(--york-dark);
+    transform: translateY(-4px); /* More noticeable lift */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+}
+
+.modal-footer .btn-secondary {
+    background-color: var(--york-grey);
+    border-color: var(--york-grey);
+    color: var(--york-white);
+    box-shadow: 0 5px 15px rgba(var(--york-grey-rgb), 0.2);
+}
+
+.modal-footer .btn-secondary:hover {
+    background-color: var(--york-dark);
+    border-color: var(--york-dark);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+}
+
+/* Responsive Adjustments for Modals */
+@media (max-width: 768px) {
+    .modal-content {
+        margin: 1rem;
+    }
+    .modal-header,
+    .modal-body,
+    .modal-footer {
+        padding: 1.5rem 1.8rem;
+    }
+    .modal-title {
+        font-size: 1.6rem;
+    }
+    .modal-body {
+        font-size: 1.05rem;
+    }
+    .modal-header .btn-close {
+        right: 1.2rem;
+        top: 1.2rem;
+    }
+    .modal-footer .btn {
+        width: 100%; /* Stack buttons on small screens */
+        padding: 0.7rem 1.2rem;
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .modal-content {
+        margin: 0.75rem;
+    }
+    .modal-header,
+    .modal-body,
+    .modal-footer {
+        padding: 1rem 1.25rem;
+    }
+    .modal-title {
+        font-size: 1.35rem;
+    }
+    .modal-body {
+        font-size: 0.95rem;
+    }
+    .modal-footer {
+        flex-direction: column; /* Stack buttons vertically */
+        gap: 0.75rem;
+    }
+    .modal-footer .btn {
+        width: 100%;
+        padding: 0.6rem 1rem;
+        font-size: 0.85rem;
+    }
+}
+
+
+/* General Responsive Adjustments */
+@media (max-width: 992px) {
+    .navbar-brand {
+        font-size: 1.6rem;
+    }
+    .hero h1 {
+        font-size: 3rem;
+    }
+    .hero p.lead {
+        font-size: 1.3rem;
+    }
+    .hero .btn-primary {
+        padding: 0.7rem 2rem;
+        font-size: 1.1rem;
+    }
+    .section-title {
+        font-size: 2.2rem;
+    }
+    .card-img-top {
+        height: 200px;
+    }
+    #propertyTitle {
+        font-size: 2.2rem;
+    }
+    #propertyPrice {
+        font-size: 1.8rem;
+    }
+    .benefits-section h2 {
+        font-size: 2.5rem;
+    }
+    .benefits-swiper .swiper-slide {
+        padding: 2rem;
+    }
+    .benefits-swiper h3 {
+        font-size: 1.6rem;
+    }
+    .benefits-swiper .lead {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        padding: 0.75rem 1rem;
+    }
+    .navbar-brand {
+        font-size: 1.4rem;
+    }
+    .hero {
+        padding: 6rem 0;
+        min-height: 450px;
+    }
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+    .hero p.lead {
+        font-size: 1.1rem;
+        margin-bottom: 2rem;
+    }
+    .hero .btn-primary {
+        padding: 0.6rem 1.5rem;
+        font-size: 1rem;
+    }
+    .section-title {
+        font-size: 1.8rem;
+        margin-bottom: 2.5rem;
+    }
+    .card {
+        margin-bottom: 1.5rem; /* Add space between stacked cards */
+    }
+    .card-body {
+        padding: 1.25rem;
+    }
+    .card-title {
+        font-size: 1.3rem;
+    }
+    .card-subtitle {
+        font-size: 1rem;
+    }
+    .card-text {
+        font-size: 0.9rem;
+    }
+    #propertyDetailsContent {
+        padding: 2rem;
+    }
+    #propertyTitle {
+        font-size: 1.8rem;
+    }
+    #propertyPrice {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+    }
+    #propertyDetailsContent p {
+        font-size: 1rem;
+    }
+    #propertyDetailsContent h4 {
+        font-size: 1.5rem;
+        margin-top: 2rem;
+    }
+    form {
+        padding: 2rem;
+    }
+    form .form-control {
+        padding: 0.6rem 0.8rem;
+        font-size: 0.95rem;
+    }
+    form .btn-danger {
+        padding: 0.6rem 1.2rem;
+        font-size: 1rem;
+    }
+    .benefits-section {
+        padding: 3rem 0 1.5rem 0;
+    }
+    .benefits-section h2 {
+        font-size: 2rem;
+    }
+    .faq-strip {
+        padding: 1.5rem 0;
+    }
+    .faq-strip p.h5 {
+        font-size: 1.1rem;
+    }
+    .benefits-swiper {
+        padding: 2rem 0;
+    }
+    .benefits-swiper h3 {
+        font-size: 1.4rem;
+    }
+    .benefits-swiper .lead {
+        font-size: 1rem;
+    }
+    .swiper-button-prev,
+    .swiper-button-next {
+        width: 40px;
+        height: 40px;
+    }
+    .swiper-button-prev::after,
+    .swiper-button-next::after {
+        font-size: 1.2rem !important;
+    }
+    footer {
+        padding: 2rem 0;
+        font-size: 0.85rem;
+    }
+}
+
+
+
+/* Page Transition Overlay */
+.page-transition-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #f8f9fa; /* Match your page background or a neutral color */
+    z-index: 9999; /* Ensure it's on top of everything */
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0s ease-out, visibility 0s ease-out;
+}
+
+.page-transition-overlay.fade-out {
+    opacity: 0;
+    visibility: hidden;
+}
+
+/* Custom CSS for input red glow (individual fields) */
+.input-red-glow {
+    border-color: #dc3545 !important; /* Bootstrap's danger red */
+    box-shadow: 0 0 0 0.25rem rgba(220, 53, 69, 0.25) !important; /* Subtle red glow */
+    transition: all 0.3s ease-in-out;
+}
+
+/* NEW: Gradient Red Glow for Forms (on error) */
+.form-red-gradient-glow {
+    /* Subtle inner shadow for the glow effect */
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.5), /* Stronger red */
+                0 0 30px rgba(255, 0, 0, 0.3), /* Lighter red */
+                0 0 45px rgba(255, 0, 0, 0.1); /* Fainter red */
+    border: 1px solid rgba(255, 0, 0, 0.7);
+    transition: box-shadow 0.5s ease-in-out, border 0.5s ease-in-out;
+}
+
+/* General Font Styling for better readability and sharpness */
+body {
+    /* Using system fonts for native look, or uncomment Google Font below */
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    /* Example for Google Font: */
+    /* font-family: 'Inter', sans-serif; */
+
+    /* Font smoothing for sharper text rendering on macOS/iOS */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
+/* You might want to fine-tune headings separately if needed */
+h1, h2, h3, h4, h5, h6 {
+    text-rendering: optimizeLegibility;
+}
+
+/* Styling for custom alerts to make them look nicer */
+#alert-container {
+    position: fixed;
+    top: 70px; /* Adjust based on your navbar height */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1050; /* Ensure it's above most content */
+    max-width: 500px; /* Limit width for better readability */
+    width: 90%; /* Responsive width */
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Add subtle shadow */
+    border-radius: .375rem; /* Match Bootstrap's default border-radius */
+    overflow: hidden; /* Ensure content stays within borders */
+}
+
+/* Ensure spinner in buttons looks good */
+.btn .spinner-border {
+    vertical-align: -0.125em; /* Align spinner vertically in button */
+}
+
+
+/* style.css */
+
+.section-title {
+    font-family: Arial, Helvetica, sans-serif; /* Example web-safe font stack */
+    /* You can also add other font properties */
+    font-size: 2.5rem; /* Example font size */
+    color: #333; /* Example text color */
+}
+
+/* Or if it's a different element, target that element: */
+/*
+.why-york-realty-section p {
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}
+*/
+/* Google Translate Hide Styles */
+.goog-logo-link { display: none !important; }
+.goog-te-gadget.gadget-simple { color: transparent !important; }

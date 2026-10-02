@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Listings | York Realty</title>
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        includedLanguages: 'en,fr',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+      }, 'google_translate_element');
+    }
+  </script>
+  <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="google_translate_element" class="mb-2"></div>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-danger px-4">
+    <a class="navbar-brand text-white fw-bold" href="#">York Realty</a>
+    <div class="ms-auto d-flex gap-2">
+      <a href="index.html" class="btn btn-dark">Home</a>
+      <a href="listings.html" class="btn btn-dark">Listings</a>
+      <a href="create-listing.html" class="btn btn-dark">Create Listing</a>
+      <a href="faq.html" class="btn btn-dark">FAQ</a>
+      <a href="login.html" class="btn btn-dark">Login</a>
+      <a href="register.html" class="btn btn-dark">Register</a>
+    </div>
+  </nav>
+
+  <div class="container mt-4">
+    <div class="row g-2 justify-content-center">
+      <!-- Search Bar -->
+      <div class="col-md-3 text-center">
+        <input type="text" id="searchBar" class="form-control text-center" placeholder="Address, Postal Code">
+      </div>
+      <!-- Listing Type (Rent or Buy) -->
+      <div class="col-md-2">
+        <select id="homeType" class="form-select">
+          <option value="">Listing Type</option>
+          <option value="rent">Rent</option>
+          <option value="sale">Buy</option>
+        </select>
+      </div>
+      <!-- Housing Type -->
+      <div class="col-md-2">
+        <select id="housingType" class="form-select">
+          <option value="">Housing Type</option>
+          <option value="apartment">Apartment</option>
+          <option value="house">House</option>
+          <option value="condo">Condo</option>
+          <option value="townhouse">Townhouse</option>
+        </select>
+      </div>
+      <!-- Beds -->
+      <div class="col-md-2">
+        <select id="beds" class="form-select">
+          <option value="">Beds</option>
+          <option value="1">1 Bed</option>
+          <option value="2">2 Beds</option>
+          <option value="3">3 Beds</option>
+          <option value="4">4+ Beds</option>
+        </select>
+      </div>
+      <!-- Baths -->
+      <div class="col-md-2">
+        <select id="baths" class="form-select">
+          <option value="">Baths</option>
+          <option value="1">1 Bath</option>
+          <option value="2">2 Baths</option>
+          <option value="3">3 Baths</option>
+          <option value="4">4+ Baths</option>
+        </select>
+      </div>
+      <!-- Search Button -->
+      <div class="col-md-1">
+        <button id="filterBtn" class="btn btn-danger w-100">Search</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Listings Cards and Pagination Placeholders -->
+  <div class="container mt-4">
+    <div id="listingsContainer" class="row"></div>
+    <div id="pagination" class="mt-3 d-flex justify-content-center"></div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-danger text-white text-center py-3 mt-5">
+    <p>&copy; 2025 York Realty. All Rights Reserved.</p>
+  </footer>
+</body>
+</html>
